@@ -1,2 +1,7 @@
 serverConfiguration/serverlogs/error_log
 serverConfiguration/serverlogs/access_log
+.vagrant/machines/TimeTrackerApp/virtualbox/private_key
+.vagrant/machines/TimeTrackerApp/virtualbox/index_uuid
+.vagrant/machines/TimeTrackerApp/virtualbox/id
+.vagrant/machines/TimeTrackerApp/virtualbox/action_set_name
+.vagrant/machines/TimeTrackerApp/virtualbox/action_provision
