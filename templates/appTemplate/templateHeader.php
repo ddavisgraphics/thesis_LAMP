@@ -25,7 +25,7 @@
 <header>
     <div class="container">
         <div class="siteTitle">
-            <h1> Time Tracker </h1>
+            <h1> {local var="appName"} </h1>
             <blockquote>
                 Tracking your time, <br> enabling your productivity.
             </blockquote>
@@ -35,9 +35,3 @@
         </nav>
     </div>
 </header>
-
-<section class="main">
-    <div class="container">
-        {{>yield}}
-    </div>
-</section>
