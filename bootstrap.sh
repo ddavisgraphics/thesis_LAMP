@@ -43,7 +43,7 @@ git clone -b $ENGINEBRANCH $ENGINEAPIGIT
 git clone https://github.com/wvulibraries/engineAPI-Modules.git
 
 mkdir -p $SERVERURL/phpincludes/
-ln -s /vagrant/templates $GITDIR/engineAPI/engine/template/
+ln -s /vagrant/template $GITDIR/engineAPI/engine/template/
 ln -s $GITDIR/engineAPI-Modules/src/modules/* $GITDIR/engineAPI/engine/engineAPI/latest/modules/
 ln -s $GITDIR/engineAPI/engine/ $SERVERURL/phpincludes/
 
