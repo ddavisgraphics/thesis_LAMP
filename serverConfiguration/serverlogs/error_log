@@ -1,8 +1,0 @@
-[Mon Jun 29 11:52:59 2015] [notice] suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
-[Mon Jun 29 11:53:04 2015] [notice] Digest: generating secret for digest authentication ...
-[Mon Jun 29 11:53:04 2015] [notice] Digest: done
-[Mon Jun 29 11:53:04 2015] [notice] Apache/2.2.15 (Unix) DAV/2 mod_auth_kerb/5.4 mod_ssl/2.2.15 OpenSSL/1.0.1e-fips mod_wsgi/3.2 Python/2.6.6 mod_perl/2.0.4 Perl/v5.10.1 configured -- resuming normal operations
-[Sun Nov 15 22:22:40 2015] [notice] suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
-[Sun Nov 15 22:23:00 2015] [notice] Digest: generating secret for digest authentication ...
-[Sun Nov 15 22:23:00 2015] [notice] Digest: done
-[Sun Nov 15 22:23:00 2015] [notice] Apache/2.2.15 (Unix) DAV/2 mod_auth_kerb/5.4 PHP/5.3.3 mod_ssl/2.2.15 OpenSSL/1.0.1e-fips mod_wsgi/3.2 Python/2.6.6 mod_perl/2.0.4 Perl/v5.10.1 configured -- resuming normal operations
