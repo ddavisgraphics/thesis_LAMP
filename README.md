@@ -86,4 +86,7 @@ sudo ln -s /etc/httpd/logs/access_log /vagrant/serverConfiguration/serverlogs/ac
 ```
 
 ### PHP Configuration
-In the base directory we are going to have to setup an includes folder that adds the engine framework to our document.  We want to do this in a way that we only have to include it once.
+In the base directory we are going to have to setup an includes folder that adds the engine framework to our document.  We want to do this in a way that we only have to include it once.  The bootstrap is setup to be configured with a specific directory setup for your codebase, but you can always ammend it once you figure out the different layers of items and want to dive in the bash.
+
+![Directory Structure](http://oi64.tinypic.com/2hoyasl.jpg "Directory Structure")
+
