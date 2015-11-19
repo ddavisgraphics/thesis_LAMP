@@ -3,6 +3,7 @@
     require_once '/home/timeTracker/phpincludes/engine/engineAPI/4.0/engine.php';
     $engine = EngineAPI::singleton();
 
+
     // Setup Error Rorting
     errorHandle::errorReporting(errorHandle::E_ALL);
 
@@ -35,5 +36,5 @@
     recurseInsert("includes/vars.php","php");
 
     // load a template to use
-    templates::load("appTemplate");
+    templates::load('timeTemplate');
 ?>
