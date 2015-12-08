@@ -1,6 +1,5 @@
 <?php
-
-    class Customer {
+    class Customers {
         public function getCustomer($id = null){
             try {
                 // call engine
