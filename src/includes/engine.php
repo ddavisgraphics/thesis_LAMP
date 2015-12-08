@@ -34,7 +34,6 @@
 
     // include base variables
     recurseInsert("includes/vars.php","php");
-    recurseInsert("includes/controller/controllers.php", "php");
 
     // load a template to use
     templates::load('timeTemplate');
