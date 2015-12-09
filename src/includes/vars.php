@@ -5,4 +5,5 @@
     $localvars->set('dbConnectionName', 'appDB');
     $localvars->set("appTitle","TimeTracker");
     $localvars->set("meta_authors", "David J. Davis");
+    $localvars->set('appName', "TimeTracker 5000");
 ?>
