@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <title>{local var="currentDisplayObjectTitle"} | WVU Libraries | West Virginia University</title>
+    <title>{local var="currentDisplayObjectTitle"} | TimeTracker5000 </title>
 
     <!-- Meta Information -->
     <meta charset="utf-8">
