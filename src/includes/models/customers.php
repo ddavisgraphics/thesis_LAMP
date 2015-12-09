@@ -1,30 +1,31 @@
 <?php
     class Customers {
-        public function getCustomer($id = null){
+        public function getRecords($id = null){
             try {
                 // call engine
                 $engine    = EngineAPI::singleton();
                 $localvars = localvars::getInstance();
                 $db        = db::get($localvars->get('dbConnectionName'));
                 $sql       = "SELECT * FROM `customers`";
+                $validate  = new validate;
 
                 // test to see if Id is present and valid
-                if(!isnull($id) && validate::integer($id)){
+                if(!isnull($id) && $validate->integer($id)){
                     $sql .= sprintf('WHERE id = %s LIMIT 1', $id);
                 }
 
                 // if no valid id throw an exception
-                if(!validate::integer($id)){
-                    throw new Exception(__METHOD__.'() - Not a valid integer, please check the integer and try again.');
+                if(!$validate->integer($id) && !isnull($id)){
+                    throw new Exception("I don't want to be tried!");
                 }
 
                 // get the results of the query
                 $sqlResult = $db->query($sql);
 
-                // if no results throw an exception
+                // if return no results
                 // else return the data
                 if ($sqlResult->rowCount() < 1) {
-                   throw new Exception(__METHOD__.'() -There are no employees in the database');
+                   return "There are no customers in the database.";
                 }
                 else {
                     $data = array();
@@ -38,13 +39,12 @@
             }
         }
 
-        public function setupCustomerForm($id = null){
+        public function setupForm($id = null){
              try {
                 // call engine
                 $engine    = EngineAPI::singleton();
                 $localvars = localvars::getInstance();
-                $db        = db::get($localvars->get('dbConnectionName'));
-                $sql       = "SELECT * FROM `customers`";
+                $validate  = new validate;
 
                 // create customer form
                 $form = formBuilder::createForm('Customers');
@@ -58,12 +58,12 @@
                 $form->updateTitle = "Edit Customer";
 
                 // if no valid id throw an exception
-                if(!validate::integer($id)){
+                if(!$validate::integer($id)){
                     throw new Exception(__METHOD__.'() - Not a valid integer, please check the integer and try again.');
                 }
 
                 // form information
-                 $form->addField(array(
+                $form->addField(array(
                     'name'    => 'ID',
                     'type'    => 'hidden',
                     'value'   => $id,
@@ -133,6 +133,7 @@
                     'value'      => 'Submit'
                 ));
 
+                return $form;
 
             } catch (Exception $e) {
                 errorHandle::errorMsg($e->getMessage());

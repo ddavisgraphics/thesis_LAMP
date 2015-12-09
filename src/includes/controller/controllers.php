@@ -14,7 +14,7 @@
         );
 
         if(in_array($model, $expectedModels)){
-             $pageVariables = array(
+            $pageVariables = array(
                 'model'  => ucfirst($model),
                 'action' => $action,
                 'item'   => $item
