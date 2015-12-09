@@ -13,14 +13,7 @@
     templates::display('header');
 ?>
 
-<section>
-    <header>
-        <h1>{local var="pageHeader"}</h1>
-    </header>
-
-    {local var="content"}
-</section>
-
+{local var="content"}
 
 <?php
     templates::display('footer');
