@@ -2,17 +2,20 @@
     class View {
         public $templateExsist;
         public $path;
+        public $variables;
+        public $data;
 
         public function __construct($template, $variables = array()){
             try {
                 $viewsPath = '/home/timeTracker/public_html/src/includes/views/';
-                $file = $viewsPath . strtolower($template) . '.php';
+                $file      = $viewsPath . strtolower($template) . '.php';
 
                 $this->path      = $file;
                 $this->variables = $variables;
+                $this->extractVariables();
 
                 if (file_exists($file)) {
-                  $this->templateExsist = true;
+                    $this->templateExsist = true;
                 } else {
                     throw new Exception('Template ' . $template . ' not found!');
                 }
@@ -23,19 +26,27 @@
             }
         }
 
-        public function render($file = null) {
+        public function render() {
+            $file = $this->path;
+
             if(isnull($file)){
-                $file = $this->path;
+                throw new Exception('Path and Variables are null.');
             }
-            return file_get_contents($file);
+
+            extract($this->data);
+            ob_start();
+            include($file);
+            $renderedView = ob_get_contents();
+            ob_end_clean();
+
+            return $renderedView;
         }
 
-        // function render($template, $param){
-        //    ob_start();
-        //    include($template);//How to pass $param to it? It needs that $row to render blog entry!
-        //    $ret = ob_get_contents();
-        //    ob_end_clean();
-        //    return $ret;
-        // }
+        private function extractVariables(){
+            $variables = $this->variables;
+            foreach($variables as $varName => $varValue){
+                $this->data[$varName] = $varValue;
+            }
+        }
     }
 ?>
