@@ -22,6 +22,10 @@ yum -y install mod_auth_kerb mod_auth_mysql mod_authz_ldap mod_evasive mod_perl 
 echo "install php"
 yum -y install php php-bcmath php-cli php-common php-gd php-ldap php-mbstring php-mcrypt php-mysql php-odbc php-pdo php-pear php-pear-Benchmark
 
+echo "link php ini that has some custom configuations set"
+rm -f /etc/php.ini
+ln -s /vagrant/serverConfiguration/php.ini /etc/php.ini
+
 echo "install emacs git"
 yum -y install emacs emacs-common emacs-nox
 yum -y install git
