@@ -3,7 +3,6 @@
     require_once '/home/timeTracker/phpincludes/engine/engineAPI/4.0/engine.php';
     $engine = EngineAPI::singleton();
 
-
     // Setup Error Rorting
     errorHandle::errorReporting(errorHandle::E_ALL);
 
