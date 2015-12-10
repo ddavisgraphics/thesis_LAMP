@@ -10,6 +10,10 @@
     $router->defineRoute("/{model}/{action}/{item}", 'displayRoute');
     $router->route();
 
+    $customers = new Customers;
+    // $customers->getRecords();  // read
+    // $customers->setupForm();   // create / update
+
     templates::display('header');
 ?>
 
