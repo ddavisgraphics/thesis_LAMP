@@ -27,19 +27,22 @@
         }
 
         public function render() {
-            $file = $this->path;
+            try {
+                $file = $this->path;
 
-            if(isnull($file)){
-                throw new Exception('Path and Variables are null.');
+                if(isnull($file)){
+                    throw new Exception('Path is null.  We can not have null paths so something is crazy');
+                }
+
+                ob_start();
+                include($file);
+                $renderedView = ob_get_contents();
+                ob_end_clean();
+
+                return $renderedView;
+            } catch(Exception $e) {
+                errorHandle::errorMsg($e->getMessage());
             }
-
-            extract($this->data);
-            ob_start();
-            include($file);
-            $renderedView = ob_get_contents();
-            ob_end_clean();
-
-            return $renderedView;
         }
 
         private function extractVariables(){
