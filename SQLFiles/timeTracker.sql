@@ -9,7 +9,7 @@ CREATE TABLE `customers` (
     `email` varchar(50) NOT NULL,
     `phone` varchar(15) NOT NULL,
     `website` varchar(200) NOT NULL,
-    PRIMARY KEY (`ID`),
+    PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Projects
@@ -17,13 +17,13 @@ CREATE TABLE `customers` (
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
     `projectID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-    `customerID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+    `customerID` tinyint(3) unsigned NOT NULL,
     `projectName` varchar(50) NOT NULL,
     `scope` varchar(50) NOT NULL,
     `type` varchar(50) NOT NULL,
     `completed` boolean NOT NULL,
     `description` text NOT NULL,
-    PRIMARY KEY (`projectID`),
+    PRIMARY KEY (`projectID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- TimeTracker
@@ -31,11 +31,11 @@ CREATE TABLE `projects` (
 DROP TABLE IF EXISTS `timeTracking`;
 CREATE TABLE `timeTracking` (
     `timeID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-    `projectIdLink` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+    `projectIdLink` tinyint(3) unsigned NOT NULL,
     `startTime` int(11) NOT NULL,
     `endTime` int(11) NOT NULL,
     `totalHours` int(5) NOT NULL,
     `employeeName` boolean NOT NULL,
     `descriptionOfWork` text NOT NULL,
-    PRIMARY KEY (`timeID`),
+    PRIMARY KEY (`timeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
