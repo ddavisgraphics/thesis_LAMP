@@ -1,14 +1,15 @@
 <?php
-    function determineAction($action, $item){
+    function determineAction($class, $action, $item){
         $localvars = localvars::getInstance();
         $validate  = new validate;
-        $customers = new Customers;
+        $myClass   = new $class;
+        $pageData  = "";
 
         // record Id Set to null
         $id = null;
 
         // create an array of valid actions
-        $validActions = array('create', 'read', 'update', 'delete');
+        $validActions = array('create', 'add', 'read', 'view', 'update', 'edit', 'delete');
 
         // this is an $id only
         // not null and not an empty string
@@ -17,42 +18,47 @@
         }
 
         // get a specific record or determine what to do
-        if(!isnull($action) && !is_empty($action)){
+        if(!isnull($action) || in_array($action, $validActions)){
             if($validate->integer($action)){
-                $pageData = $customers->getRecords($action);
+                $pageData = $myClass->getRecords($action);
             }
             else {
                 switch ($action) {
                     case 'create':
+                    case 'add':
                     case 'update':
+                    case 'edit':
                         if(isnull($id)){
-                            $pageData = $customers->setupForm();
+                            $pageData = $myClass->setupForm();
                         }
                         else{
-                            $pageData = $customers->setupForm($id);
+                            $pageData = $myClass->setupForm($id);
                         }
                     break;
 
                     case 'delete':
                         if(!isnull($id)){
-                            $pageData = $customers->deleteRecords($id);
+                            $pageData = $myClass->deleteRecords($id);
                         } else {
-                            $pageData = $customers->deleteRecords();
+                            $pageData = $myClass->deleteRecords();
                         }
                     break;
 
                     default:
                     case 'read':
+                    case 'view':
                         // if isnull $id get all records
                         if(isnull($id)){
-                            $pageData = $customers->getRecords();
+                            $pageData = $myClass->getRecords();
                         }
                         else{
-                            $pageData = $customers->getRecords($id);
+                            $pageData = $myClass->getRecords($id);
                         }
                     break;
                 }
             }
+        } else {
+             $pageData = $myClass->getRecords();
         }
 
         return $pageData;
