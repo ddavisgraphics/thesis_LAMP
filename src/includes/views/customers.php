@@ -7,7 +7,6 @@
     // instantiate classes
     $localvars = localvars::getInstance();
     $validate  = new validate;
-    $customers = new Customers;
 
     // set template vars
     $localvars->set('pageName', ucfirst($this->data['model']));
@@ -17,16 +16,16 @@
     $action = $this->data['action'];
     $item   = $this->data['item'];
 
-    $output = determineAction($action, $item);
+    $output = determineAction($model, $action, $item);
 
-
-    print "<pre>";
-    var_dump($output);
-    print "</pre>";
+    $output = $localvars->set('pageContent', $output);
 ?>
 
-<h2> Manage {local var="pageName"} </h2>
-
-{local var="pageContent"}
+<div class="wrapper">
+    <div class="container">
+        <h2> Manage {local var="pageName"} </h2>
+        {local var="pageContent"}
+    </div>
+</div>
 
 
