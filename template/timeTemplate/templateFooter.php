@@ -1,5 +1,7 @@
 <footer>
-    <p> Copyrights <?php print Date('m-d-Y'); ?> - David Davis - Test Framework </p>
+    <div class="container">
+        <p> Copyright <?php print Date('Y'); ?> - David Davis - Test Framework </p>
+    </div>
 </footer>
 
 <?php recurseInsert("includes/footerIncludes.php","php") ?>
