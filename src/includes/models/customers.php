@@ -249,8 +249,8 @@
                                                 <div class='website'><a href='%s'>%s</a></div>
                                             </div>
                                             <div class='actions'>
-                                                <a href='/customers/edit/%s'> Edit Customer </a>
-                                                <a href='/customers/delete/%s'> Delete Customer </a>
+                                                <a href='/customers/edit/%s'> <span class='glyphicon glyphicon-edit'></span> </a>
+                                                <a href='/customers/delete/%s'><span class='glyphicon glyphicon-trash'></span> </a>
                                             </div>
                                         </div>",
                             $data['companyName'],
@@ -290,8 +290,8 @@
                                         <td>%s</td>
                                         <td>%s</td>
                                         <td>%s</td>
-                                        <td><a href='customers/edit/%s'> Edit Customer </a></td>
-                                        <td><a href='customers/confirmDelete/%s'> Delete Customer </a></td>
+                                        <td><a href='customers/edit/%s'><span class='glyphicon glyphicon-edit'></span> </a></td>
+                                        <td><a href='customers/confirmDelete/%s'> <span class='glyphicon glyphicon-trash'></span> </a></td>
                                     </tr>",
                         $data['companyName'],
                         $data['firstName'],
@@ -304,8 +304,8 @@
                 );
             }
 
-            $output     = sprintf("<div class='dataTable'>
-                                        <table>
+            $output     = sprintf("<div class='dataTable table-responsive'>
+                                        <table class='table table-striped'>
                                             <thead>
                                                 <tr>
                                                     <th> Company Name </th>
