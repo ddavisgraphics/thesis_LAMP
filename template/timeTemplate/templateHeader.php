@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <title>{local var="currentDisplayObjectTitle"} | TimeTracker5000 </title>
+    <title>{local var="pageName"} | TimeTracker5000 </title>
 
     <!-- Meta Information -->
     <meta charset="utf-8">
