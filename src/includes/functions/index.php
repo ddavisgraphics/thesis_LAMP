@@ -40,9 +40,9 @@
 
                         case 'delete':
                             if(!isnull($id)){
-                                $pageData = $myClass->deleteRecords($id);
+                                $pageData = $myClass->deleteRecord($id);
                             } else {
-                                $pageData = $myClass->deleteRecords();
+                                $pageData = $myClass->deleteRecord();
                             }
                         break;
 
