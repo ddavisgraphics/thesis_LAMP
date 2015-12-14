@@ -126,7 +126,7 @@
                     'showIn'     => array(formBuilder::TYPE_UPDATE),
                     'name'       => 'delete',
                     'type'       => 'delete',
-                    'fieldClass' => 'delete',
+                    'fieldClass' => 'delete hidden',
                     'value'      => 'Delete'
                 ));
 
@@ -151,15 +151,15 @@
                 $engine    = EngineAPI::singleton();
                 $localvars = localvars::getInstance();
                 $db        = db::get($localvars->get('dbConnectionName'));
-                $sql       = "SELECT * FROM `customers`";
                 $validate  = new validate;
 
                 // test to see if Id is present and valid
-                if(isnull($id) && !$validate->integer($id)){
+                if(isnull($id) || !$validate->integer($id)){
                     throw new Exception(__METHOD__.'() -Delete failed, improper id or no id was sent');
                 }
 
-                // get the results of the query
+                // SQL Results
+                $sql = sprintf("DELETE FROM `customers` WHERE id=%s LIMIT 1", $id);
                 $sqlResult = $db->query($sql);
 
                 if(!$sqlResult) {
@@ -176,5 +176,172 @@
         }
 
 
+    public function renderDeleteData($id){
+        try {
+            $engine    = EngineAPI::singleton();
+            $localvars = localvars::getInstance();
+            $validate  = new validate;
+
+            if(isnull($id) || !$validate->integer($id)){
+                throw new Exception('Id is null or not an integer.  Please try again.');
+            }
+            else {
+                $dataRecord = self::getRecords($id);
+                $output = "";
+                foreach($dataRecord as $data){
+                     $output .= sprintf("<div class='customerRecord'>
+                                            <h2 class='company'>%s</h2>
+                                            <div class='name'>
+                                                <strong>Customer Name:</strong>
+                                                %s
+                                            </div>
+                                            <div class='contactInfo'>
+                                                <div class='email'>%s</div>
+                                                <div class='phone'>%s</div>
+                                                <div class='website'><a href='%s'>%s</a></div>
+                                            </div>
+                                            <div class='actions'>
+                                                <a href='/customers/delete/%s'> Delete </a>
+                                                <a href='/customers'> Cancel </a>
+                                            </div>
+                                        </div>",
+                            $data['companyName'],
+                            $data['firstName']." ".$data['lastName'],
+                            $data['email'],
+                            $data['phone'],
+                            $data['website'],
+                            $data['website'],
+                            $data['ID']
+                    );
+                }
+
+                return $output;
+            }
+
+        } catch (Exception $e) {
+            errorHandle::errorMsg($e->getMessage());
+            return $e->getMessage();
+        }
     }
+
+    public function renderSingleRecord($id){
+        try {
+            $engine    = EngineAPI::singleton();
+            $localvars = localvars::getInstance();
+            $validate  = new validate;
+
+            if(isnull($id) || !$validate->integer($id)){
+                throw new Exception('Id is null or not an integer.  Please try again.');
+            }
+            else {
+                $dataRecord = self::getRecords($id);
+                $output = "";
+                foreach($dataRecord as $data){
+                    $output .= sprintf("<div class='customerRecord'>
+                                            <h2 class='company'>%s</h2>
+                                            <div class='name'>
+                                                <strong>Customer Name:</strong>
+                                                %s
+                                            </div>
+                                            <div class='contactInfo'>
+                                                <div class='email'>%s</div>
+                                                <div class='phone'>%s</div>
+                                                <div class='website'><a href='%s'>%s</a></div>
+                                            </div>
+                                            <div class='actions'>
+                                                <a href='/customers/edit/%s'> Edit Customer </a>
+                                                <a href='/customers/delete/%s'> Delete Customer </a>
+                                            </div>
+                                        </div>",
+                            $data['companyName'],
+                            $data['firstName']." ".$data['lastName'],
+                            $data['email'],
+                            $data['phone'],
+                            $data['website'],
+                            $data['website'],
+                            $data['ID'],
+                            $data['ID']
+                    );
+                }
+
+                return $output;
+            }
+
+        } catch (Exception $e) {
+            errorHandle::errorMsg($e->getMessage());
+            return $e->getMessage();
+        }
+    }
+
+     public function renderDataTable(){
+        try {
+            $engine     = EngineAPI::singleton();
+            $localvars  = localvars::getInstance();
+            $validate   = new validate;
+            $dataRecord = self::getRecords();
+
+            $records    = "";
+
+            foreach($dataRecord as $data){
+                $records .= sprintf("<tr>
+                                        <td>%s</td>
+                                        <td>%s</td>
+                                        <td>%s</td>
+                                        <td>%s</td>
+                                        <td>%s</td>
+                                        <td>%s</td>
+                                        <td><a href='customers/edit/%s'> Edit Customer </a></td>
+                                        <td><a href='customers/confirmDelete/%s'> Delete Customer </a></td>
+                                    </tr>",
+                        $data['companyName'],
+                        $data['firstName'],
+                        $data['lastName'],
+                        $data['email'],
+                        $data['phone'],
+                        $data['website'],
+                        $data['ID'],
+                        $data['ID']
+                );
+            }
+
+            $output     = sprintf("<div class='dataTable'>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th> Company Name </th>
+                                                    <th> First name </th>
+                                                    <th> Last Name </th>
+                                                    <th> Email </th>
+                                                    <th> Phone Number </th>
+                                                    <th> Website </th>
+                                                    <th> </th>
+                                                    <th> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                %s
+                                            </tbody>
+                                        </table>
+                                    </div>",
+                $records
+            );
+
+            return $output;
+
+        } catch (Exception $e) {
+            errorHandle::errorMsg($e->getMessage());
+            return $e->getMessage();
+        }
+    }
+
+    public function getJSON($id = null){
+        if(!isnull($id) && $validate->integer($id)){
+            $data = self::getRecords($id);
+        } else {
+            $data = self::getRecords();
+        }
+        return json_encode($data);
+    }
+
+}
 ?>
