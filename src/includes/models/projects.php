@@ -175,7 +175,7 @@ class Projects {
             }
 
             // SQL Results
-            $sql = sprintf("DELETE FROM `customers` WHERE id=%s LIMIT 1", $id);
+            $sql = sprintf("DELETE FROM `projects` WHERE id=%s LIMIT 1", $id);
             $sqlResult = $db->query($sql);
 
             if(!$sqlResult) {
@@ -204,30 +204,39 @@ class Projects {
             else {
                 $dataRecord = self::getRecords($id);
                 $output = "";
+
                 foreach($dataRecord as $data){
-                     $output .= sprintf("<div class='customerRecord'>
-                                            <h2 class='company'>%s</h2>
-                                            <div class='name'>
-                                                <strong>Customer Name:</strong>
-                                                %s
-                                            </div>
-                                            <div class='contactInfo'>
-                                                <div class='email'>%s</div>
-                                                <div class='phone'>%s</div>
-                                                <div class='website'><a href='%s'>%s</a></div>
+                     $output .= sprintf("<div class='projectRecord'>
+                                            <h2 class='projectName'>%s</h2>
+                                            <div class='projectInfo'>
+                                                <div class='scope'>
+                                                    <strong> Project Scope: </strong>
+                                                    <p> %s </p>
+                                                </div>
+                                                <div class='type'>
+                                                    <strong> Project Type: </strong>
+                                                    <p> %s </p>
+                                                </div>
+                                                <div class='description'>
+                                                    <strong> Project Description: </strong>
+                                                    <p> %s </p>
+                                                </div>
+                                                <div class='completed'>
+                                                    <strong> Is the Project Complete? </strong>
+                                                    <span> %s </span>
+                                                </div>
                                             </div>
                                             <div class='actions'>
                                                 <a href='/customers/delete/%s'> Delete </a>
                                                 <a href='/customers'> Cancel </a>
                                             </div>
                                         </div>",
-                            $data['companyName'],
-                            $data['firstName']." ".$data['lastName'],
-                            $data['email'],
-                            $data['phone'],
-                            $data['website'],
-                            $data['website'],
-                            $data['ID']
+                            $data['projectName'],
+                            $data['scope'],
+                            $data['type'],
+                            $data['description'],
+                            ($data['completed'] < 1 ? 'No' : 'Yes'),
+                            $data['projectID']
                     );
                 }
 
@@ -258,30 +267,39 @@ class Projects {
 
                 $output = "";
                 foreach($dataRecord as $data){
-                    $output .= sprintf("<div class='customerRecord'>
-                                            <h2 class='company'>%s</h2>
-                                            <div class='name'>
-                                                <strong>Customer Name:</strong>
-                                                %s
-                                            </div>
-                                            <div class='contactInfo'>
-                                                <div class='email'>%s</div>
-                                                <div class='phone'>%s</div>
-                                                <div class='website'><a href='%s'>%s</a></div>
+                    $output .= sprintf("<div class='projectRecord'>
+                                            <h2 class='projectName'>%s - <span> %s </span> </h2>
+                                            <div class='projectInfo'>
+                                                <div class='scope'>
+                                                    <strong> Project Scope: </strong>
+                                                    <p> %s </p>
+                                                </div>
+                                                <div class='type'>
+                                                    <strong> Project Type: </strong>
+                                                    <p> %s </p>
+                                                </div>
+                                                <div class='description'>
+                                                    <strong> Project Description: </strong>
+                                                    <p> %s </p>
+                                                </div>
+                                                <div class='completed'>
+                                                    <strong> Is the Project Complete? </strong>
+                                                    <span> %s </span>
+                                                </div>
                                             </div>
                                             <div class='actions'>
-                                                <a href='/customers/edit/%s'> Edit Customer </a>
-                                                <a href='/customers/delete/%s'> Delete Customer </a>
+                                                <a href='/customers/edit/%s'> Edit </a>
+                                                <a href='/customers/delete/%s'> Delete </a>
                                             </div>
                                         </div>",
-                            $data['companyName'],
-                            $data['firstName']." ".$data['lastName'],
-                            $data['email'],
-                            $data['phone'],
-                            $data['website'],
-                            $data['website'],
-                            $data['ID'],
-                            $data['ID']
+                            $data['projectName'],
+                            getCompanyName($data['customerID']),
+                            $data['scope'],
+                            $data['type'],
+                            $data['description'],
+                            ($data['completed'] < 1 ? 'No' : 'Yes'),
+                            $data['projectID'],
+                            $data['projectID']
                     );
                 }
 
@@ -314,14 +332,14 @@ class Projects {
                                         <td><a href='customers/edit/%s'> Edit Customer </a></td>
                                         <td><a href='customers/confirmDelete/%s'> Delete Customer </a></td>
                                     </tr>",
-                        $data['companyName'],
-                        $data['firstName'],
-                        $data['lastName'],
-                        $data['email'],
-                        $data['phone'],
-                        $data['website'],
-                        $data['ID'],
-                        $data['ID']
+                        $data['projectName'],
+                        getCompanyName($data['customerID']),
+                        $data['scope'],
+                        $data['type'],
+                        $data['description'],
+                        ($data['completed'] < 1 ? 'No' : 'Yes'),
+                        $data['projectID'],
+                        $data['projectID']
                 );
             }
 
@@ -329,12 +347,12 @@ class Projects {
                                         <table>
                                             <thead>
                                                 <tr>
-                                                    <th> Company Name </th>
-                                                    <th> First name </th>
-                                                    <th> Last Name </th>
-                                                    <th> Email </th>
-                                                    <th> Phone Number </th>
-                                                    <th> Website </th>
+                                                    <th> Project Name </th>
+                                                    <th> Customer Name </th>
+                                                    <th> Scope </th>
+                                                    <th> Type </th>
+                                                    <th> Completed </th>
+                                                    <th> Description </th>
                                                     <th> </th>
                                                     <th> </th>
                                                 </tr>
