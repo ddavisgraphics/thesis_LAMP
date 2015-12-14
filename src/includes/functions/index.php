@@ -79,4 +79,21 @@
             header('Location:/404Error?ClassError=true');
         }
     }
+
+    function getCompanyName($id){
+        $localvars   = localvars::getInstance();
+        $validate    = new validate;
+        $customers   = new Customers;
+        $returnValue = "";
+
+        if(isnull($id) && !$validate->integer($id)){
+            throw new Exception('not valid integer');
+            return false;
+        }
+        else {
+            $data        = $customers->getRecords($id);
+            $returnValue = $data[0]['companyName'];
+            return $returnValue;
+        }
+    }
 ?>
