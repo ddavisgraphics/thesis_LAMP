@@ -2,65 +2,81 @@
     function determineAction($class, $action, $item){
         $localvars = localvars::getInstance();
         $validate  = new validate;
-        $myClass   = new $class;
-        $pageData  = "";
 
-        // record Id Set to null
-        $id = null;
+        if(class_exists($class)){
+            $myClass   = new $class;
+            $pageData  = "";
 
-        // create an array of valid actions
-        $validActions = array('create', 'add', 'read', 'view', 'update', 'edit', 'delete');
+            // record Id Set to null
+            $id = null;
 
-        // this is an $id only
-        // not null and not an empty string
-        if(!isnull($item) && !is_empty($item) && $validate->integer($item)){
-            $id = $item;
-        }
+            // create an array of valid actions
+            $validActions = array('create', 'add', 'read', 'view', 'update', 'edit', 'delete', 'confirmDelete');
 
-        // get a specific record or determine what to do
-        if(!isnull($action) || in_array($action, $validActions)){
-            if($validate->integer($action)){
-                $pageData = $myClass->getRecords($action);
+            // this is an $id only
+            // not null and not an empty string
+            if(!isnull($item) && !is_empty($item) && $validate->integer($item)){
+                $id = $item;
             }
-            else {
-                switch ($action) {
-                    case 'create':
-                    case 'add':
-                    case 'update':
-                    case 'edit':
-                        if(isnull($id)){
-                            $pageData = $myClass->setupForm();
-                        }
-                        else{
-                            $pageData = $myClass->setupForm($id);
-                        }
-                    break;
 
-                    case 'delete':
-                        if(!isnull($id)){
-                            $pageData = $myClass->deleteRecords($id);
-                        } else {
-                            $pageData = $myClass->deleteRecords();
-                        }
-                    break;
-
-                    default:
-                    case 'read':
-                    case 'view':
-                        // if isnull $id get all records
-                        if(isnull($id)){
-                            $pageData = $myClass->getRecords();
-                        }
-                        else{
-                            $pageData = $myClass->getRecords($id);
-                        }
-                    break;
+            // get a specific record or determine what to do
+            if(!isnull($action) || in_array($action, $validActions)){
+                if($validate->integer($action)){
+                    $pageData = $myClass->getRecords($action);
                 }
-            }
-        } else {
-             $pageData = $myClass->getRecords();
-        }
+                else {
+                    switch ($action) {
+                        case 'create':
+                        case 'add':
+                        case 'update':
+                        case 'edit':
+                            if(isnull($id)){
+                                $pageData = $myClass->setupForm();
+                            }
+                            else{
+                                $pageData = $myClass->setupForm($id);
+                            }
+                        break;
 
-        return $pageData;
+                        case 'delete':
+                            if(!isnull($id)){
+                                $pageData = $myClass->deleteRecords($id);
+                            } else {
+                                $pageData = $myClass->deleteRecords();
+                            }
+                        break;
+
+                        case 'confirmDelete':
+                            if(!isnull($id)){
+                                $pageData = "Are you sure you want to delete this record?";
+                                $pageData .= $myClass->renderDeleteData($id);
+                                $pageData .= "Confirmation Buttons here";
+                            } else {
+                                header('Location:/404Error?invalidId=true');
+                            }
+                        break;
+
+                        default:
+                        case 'read':
+                        case 'view':
+                            // if isnull $id get all records
+                            if(isnull($id)){
+                                $pageData = $myClass->renderDataTable();
+                            }
+                            else{
+                                $pageData = $myClass->renderSingleRecord($id);
+                            }
+                        break;
+                    }
+                }
+            } else {
+                 $pageData = $myClass->renderDataTable();
+            }
+
+            return $pageData;
+        }
+        else {
+            header('Location:/404Error?ClassError=true');
+        }
     }
 ?>
