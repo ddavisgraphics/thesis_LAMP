@@ -16,14 +16,14 @@
     $action = $this->data['action'];
     $item   = $this->data['item'];
 
+    // set output and set local variable for html display
     $output = determineAction($model, $action, $item);
-
-    $output = $localvars->set('pageContent', $output);
+    $localvars->set('pageContent', $output);
 ?>
 
 <div class="wrapper">
     <div class="container">
-        <h2> Manage {local var="pageName"} </h2>
+        <h2> {local var="pageName"} </h2>
         {local var="pageContent"}
     </div>
 </div>
