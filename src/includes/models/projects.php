@@ -171,18 +171,18 @@ class Projects {
 
             // test to see if Id is present and valid
             if(isnull($id) || !$validate->integer($id)){
-                throw new Exception(__METHOD__.'() -Delete failed, improper id or no id was sent');
+                throw new Exception('<div class="error">'.__METHOD__.'() -Delete failed, improper id or no id was sent. </div>');
             }
 
             // SQL Results
-            $sql = sprintf("DELETE FROM `projects` WHERE id=%s LIMIT 1", $id);
+            $sql = sprintf("DELETE FROM `projects` WHERE projectID=%s LIMIT 1", $id);
             $sqlResult = $db->query($sql);
 
             if(!$sqlResult) {
-                throw new Exception(__METHOD__.'Failed to delete Projects.');
+                throw new Exception('<div class="error">'.__METHOD__.'Failed to delete Projects.</div>');
             }
             else {
-                return "Successfully deleted the message";
+                return "<div class='success'> Successfully deleted the project. </div>";
             }
 
         } catch (Exception $e) {
@@ -227,8 +227,8 @@ class Projects {
                                                 </div>
                                             </div>
                                             <div class='actions'>
-                                                <a href='/customers/delete/%s'> Delete </a>
-                                                <a href='/customers'> Cancel </a>
+                                                <a href='%s/projects/delete/%s'> Delete </a>
+                                                <a href='%s/projects'> Cancel </a>
                                             </div>
                                         </div>",
                             $data['projectName'],
@@ -236,7 +236,8 @@ class Projects {
                             $data['type'],
                             $data['description'],
                             ($data['completed'] < 1 ? 'No' : 'Yes'),
-                            $data['projectID']
+                            $root, $data['projectID'],
+                            $root
                     );
                 }
 
@@ -254,6 +255,7 @@ class Projects {
             $engine    = EngineAPI::singleton();
             $localvars = localvars::getInstance();
             $validate  = new validate;
+            $root      = $localvars->get('root');
 
             if(isnull($id) || !$validate->integer($id)){
                 throw new Exception('Id is null or not an integer.  Please try again.');
@@ -288,8 +290,8 @@ class Projects {
                                                 </div>
                                             </div>
                                             <div class='actions'>
-                                                <a href='/customers/edit/%s'> Edit </a>
-                                                <a href='/customers/delete/%s'> Delete </a>
+                                                <a href='%s/projects/edit/%s'> Edit </a>
+                                                <a href='%s/projects/delete/%s'> Delete </a>
                                             </div>
                                         </div>",
                             $data['projectName'],
@@ -298,8 +300,8 @@ class Projects {
                             $data['type'],
                             $data['description'],
                             ($data['completed'] < 1 ? 'No' : 'Yes'),
-                            $data['projectID'],
-                            $data['projectID']
+                            $root, $data['projectID'],
+                            $root, $data['projectID']
                     );
                 }
 
@@ -318,6 +320,7 @@ class Projects {
             $localvars  = localvars::getInstance();
             $validate   = new validate;
             $dataRecord = self::getRecords();
+            $root       = $localvars->get('root');
 
             $records    = "";
 
@@ -329,8 +332,8 @@ class Projects {
                                         <td>%s</td>
                                         <td>%s</td>
                                         <td>%s</td>
-                                        <td><a href='customers/edit/%s'> Edit Customer </a></td>
-                                        <td><a href='customers/confirmDelete/%s'> Delete Customer </a></td>
+                                        <td> <a href='%s/projects/edit/%s'> Edit </a> </td>
+                                        <td> <a href='%s/projects/confirmDelete/%s'> Delete </a></td>
                                     </tr>",
                         $data['projectName'],
                         getCompanyName($data['customerID']),
@@ -338,21 +341,21 @@ class Projects {
                         $data['type'],
                         $data['description'],
                         ($data['completed'] < 1 ? 'No' : 'Yes'),
-                        $data['projectID'],
-                        $data['projectID']
+                        $root, $data['projectID'],
+                        $root, $data['projectID']
                 );
             }
 
-            $output     = sprintf("<div class='dataTable'>
-                                        <table>
+            $output     = sprintf("<div class='dataTable table-responsive'>
+                                        <table class='table table-striped'>
                                             <thead>
-                                                <tr>
+                                                <tr class='info'>
                                                     <th> Project Name </th>
                                                     <th> Customer Name </th>
                                                     <th> Scope </th>
                                                     <th> Type </th>
-                                                    <th> Completed </th>
-                                                    <th> Description </th>
+                                                    <th> Description  </th>
+                                                    <th> Completed</th>
                                                     <th> </th>
                                                     <th> </th>
                                                 </tr>
