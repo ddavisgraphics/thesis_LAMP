@@ -201,8 +201,8 @@
                                                 <div class='website'><a href='%s'>%s</a></div>
                                             </div>
                                             <div class='actions'>
-                                                <a href='/customers/delete/%s'> Delete </a>
-                                                <a href='/customers'> Cancel </a>
+                                                <a href='/customers/delete/%s'> <span class='glyphicon glyphicon-ok'></span> </a>
+                                                <a href='/customers'> <span class='glyphicon glyphicon-remove'></span> </a>
                                             </div>
                                         </div>",
                             $data['companyName'],
