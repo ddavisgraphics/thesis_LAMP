@@ -1,4 +1,4 @@
-<footer>
+<footer class="footer">
     <div class="container">
         <p> Copyright <?php print Date('Y'); ?> - David Davis - Test Framework </p>
     </div>
