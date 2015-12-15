@@ -24,13 +24,13 @@
 
 <header>
     <div class="container">
-        <div class="siteTitle">
+        <div class="siteTitle col-xs-12 col-sm-4">
             <h1> {local var="appName"} </h1>
             <blockquote>
                 Tracking your time, <br> enabling your productivity.
             </blockquote>
         </div>
-        <nav class="actions">
+        <nav class="actions col-xs-12 col-sm-8 null-padding">
             <?php recurseInsert("includes/nav.php","php") ?>
         </nav>
     </div>
