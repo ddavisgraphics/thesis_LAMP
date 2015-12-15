@@ -50,7 +50,6 @@
                             if(!isnull($id)){
                                 $pageData = "Are you sure you want to delete this record?";
                                 $pageData .= $myClass->renderDeleteData($id);
-                                $pageData .= "Confirmation Buttons here";
                             } else {
                                 header('Location:/404Error?invalidId=true');
                             }
