@@ -6,5 +6,8 @@
     $localvars->set("appTitle","TimeTracker");
     $localvars->set("meta_authors", "David J. Davis");
     $localvars->set('appName', "TimeTracker 5000");
-    $localvars->set('root', $_SERVER['DOCUMENT_ROOT']);
+
+    $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+    $localvars->set('root', $root);
+
 ?>
