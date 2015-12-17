@@ -332,8 +332,8 @@ class Projects {
                                         <td>%s</td>
                                         <td>%s</td>
                                         <td>%s</td>
-                                        <td> <a href='%s/projects/edit/%s'> Edit </a> </td>
-                                        <td> <a href='%s/projects/confirmDelete/%s'> Delete </a></td>
+                                        <td> <a href='%s/projects/edit/%s'> <span class='glyphicon glyphicon-edit'></span> </a> </td>
+                                        <td> <a href='%s/projects/confirmDelete/%s'> <span class='glyphicon glyphicon-trash'></span> </a></td>
                                     </tr>",
                         $data['projectName'],
                         getCompanyName($data['customerID']),
@@ -383,6 +383,45 @@ class Projects {
             $data = self::getRecords();
         }
         return json_encode($data);
+    }
+
+    public function getCustomerProjectsJSON($customerID){
+        try {
+            // call engine
+            $engine    = EngineAPI::singleton();
+            $localvars = localvars::getInstance();
+            $db        = db::get($localvars->get('dbConnectionName'));
+            $sql       = "SELECT * FROM `projects`";
+            $validate  = new validate;
+
+            // test to see if Id is present and valid
+            if(!isnull($customerID) && $validate->integer($customerID)){
+                $sql .= sprintf('WHERE customerID = %s', $customerID);
+            }
+
+            // if no valid id throw an exception
+            if(!$validate->integer($customerID) && !isnull($customerID)){
+                throw new Exception("An invalid ID was given!");
+            }
+
+            // get the results of the query
+            $sqlResult = $db->query($sql);
+
+            // if return no results
+            // else return the data
+            if ($sqlResult->rowCount() < 1) {
+               return "There are no projects in the database.";
+            }
+            else {
+                $data = array();
+                while($row = $sqlResult->fetch()){
+                    $data[] = $row;
+                }
+                return json_encode($data);
+            }
+        } catch (Exception $e) {
+            errorHandle::errorMsg($e->getMessage());
+        }
     }
 
 }
