@@ -32,10 +32,11 @@ DROP TABLE IF EXISTS `timeTracking`;
 CREATE TABLE `timeTracking` (
     `timeID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
     `projectIdLink` tinyint(3) unsigned NOT NULL,
+    `customerIdLink` tinyint(3) unsigned NOT NULL,
     `startTime` int(11) NOT NULL,
     `endTime` int(11) NOT NULL,
     `totalHours` int(5) NOT NULL,
-    `employeeName` boolean NOT NULL,
+    `completed` boolean NOT NULL,
     `descriptionOfWork` text NOT NULL,
     PRIMARY KEY (`timeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
