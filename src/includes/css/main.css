@@ -1,5 +1,10 @@
 .siteTitle h1 {font-size:24px;}
 
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .navi { margin-top:25px; text-align:right; padding:0;}
 
 .nav-pills > li > a{
@@ -31,7 +36,18 @@
     color: #ccc;
 }
 
+.projectTimer {
+    padding:20px 0;
+}
+
+.startTimer, .endTimer {
+    margin-right:15px;
+}
+
+.formInfo .formErrors { display:none;}
+
 footer {
+    position:absolute;
     bottom: 0;
     width: 100%;
     padding:10px;
