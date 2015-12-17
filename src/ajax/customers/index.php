@@ -9,8 +9,8 @@
     $customer = new Customers;
     $validate = new validate;
 
-    if(isset($_GET['mysql']['id']) && $validate->integer($_GET['mysql']['id'])){
-        $data = $customer->getJSON($_GET['mysql']['id']);
+    if(isset($_GET['MYSQL']['id']) && $validate->integer($_GET['MYSQL']['id'])){
+        $data = $customer->getJSON($_GET['MYSQL']['id']);
     } else {
         $data = $customer->getJSON();
     }
