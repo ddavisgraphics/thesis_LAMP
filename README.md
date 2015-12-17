@@ -91,4 +91,25 @@ In the base directory we are going to have to setup an includes folder that adds
 ![Directory Structure](http://oi64.tinypic.com/2hoyasl.jpg "Directory Structure")
 
 
+# ENGINE FOR DEVELOPMENT
+Talking with the developers of Engine, the framework had a few clear goals.
+- Security and Protection from Injection and Penetration Attacks
+- Modular builds for rapid development
+- Free form development allowing the developer to choose the software design patterns they use.
+
+This example we are mainly going to talk about MVC, but you can do many styles and Engine will work for a variety of different web applications.
+
+## Validation
+
+## Form Builder
+
+## MySQL
+
+## GET / POST / SERVER
+
+## Router
+
+## Simple MVC Style
+
+## Error Handler
 
