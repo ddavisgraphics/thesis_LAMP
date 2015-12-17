@@ -307,7 +307,7 @@
             $output     = sprintf("<div class='dataTable table-responsive'>
                                         <table class='table table-striped'>
                                             <thead>
-                                                <tr>
+                                                <tr class='info'>
                                                     <th> Company Name </th>
                                                     <th> First name </th>
                                                     <th> Last Name </th>
@@ -335,6 +335,7 @@
     }
 
     public function getJSON($id = null){
+        $validate = new validate;
         if(!isnull($id) && $validate->integer($id)){
             $data = self::getRecords($id);
         } else {
