@@ -369,17 +369,13 @@ This is also consequently how we use our resources.  If we want to attach some C
 
 # Engine Useful Tools
 
-## Validation
+### Validation
 
-## Form Builder
+### Form Builder
 
-## MySQL
+### MySQL
 
-## GET / POST / SERVER
+### GET / POST / SESSION
 
-## Router
-
-
-
-## Error Handler
+### Error Handler
 
