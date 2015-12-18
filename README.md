@@ -90,8 +90,6 @@ In the base directory we are going to have to setup an includes folder that adds
 
 ![Directory Structure](/Documentation/DirectorySetup.jpg?raw=true "Directory Structure")
 
-
-
 # ENGINE FOR DEVELOPMENT
 Talking with the developers of Engine, the framework had a few clear goals.
 - Security - Specifically protection from injection and penetration attacks.
@@ -99,6 +97,59 @@ Talking with the developers of Engine, the framework had a few clear goals.
 - Free form development allowing the developer to choose the software design patterns they use.  While Engine itself runs using a Singleton pattern, meaning their can only be one, the apps developed using engine is open for the developer to choose.
 
 This example we are mainly going to talk about MVC.  Many of these same features will work with other examples as well depending on how you want to work with the different features and options.
+
+In our application we have to setup engine to run on our pages and applications.  The way we are going to do this is by creating an engine.php file.
+
+### Engine.php
+```php
+    // path to my engineAPI install
+    require_once '/home/timeTracker/phpincludes/engine/engineAPI/4.0/engine.php';
+    $engine = EngineAPI::singleton();
+
+    // Setup Error Rorting
+    errorHandle::errorReporting(errorHandle::E_ALL);
+
+    // These are specific to EngineAPI and pulling the appropriate files
+    recurseInsert("headerIncludes.php","php");
+
+    // Setup Database Information for Vagrant or eventually the server
+    $databaseOptions = array(
+        'username' => 'username',
+        'password' => 'password',
+        'dbName'   => 'timeTracker'
+    );
+
+    // makes for easy db commands
+    $db  = db::create('mysql', $databaseOptions, 'appDB');
+
+    // Set localVars and engineVars variables
+    $localvars  = localvars::getInstance();
+    $enginevars = enginevars::getInstance();
+
+    if (EngineAPI::VERSION >= "4.0") {
+        $localvars  = localvars::getInstance();
+        $localvarsFunction = array($localvars,'set');
+    }
+    else {
+        $localvarsFunction = array("localvars","add");
+    }
+
+    // include base variables
+    recurseInsert("includes/vars.php","php");
+
+    // load a template to use
+    templates::load('timeTemplate');
+```
+
+## Simple MVC Style
+
+MVC stand for Model View and Controller.  It is used to develop applications and keep a seperation of concerns and logic.  The model aspect directly deals with the data, logic, and rule of the application.  The View component can be thought of as dealing with logic and what the user sees.  The Controller takes information determines what model and view should be represented.
+
+In our simple MVC we are going to take advantage of a routing system natively built in Engine.  We are going to create our own customer class and a function that will help to manage our routing and views rendering.  We are also going to use a few other things within engine that help to make templating seperation of logic much easier.
+
+### Router
+
+
 
 ## Validation
 
@@ -110,7 +161,7 @@ This example we are mainly going to talk about MVC.  Many of these same features
 
 ## Router
 
-## Simple MVC Style
+
 
 ## Error Handler
 

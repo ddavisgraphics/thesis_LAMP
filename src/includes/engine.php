@@ -6,10 +6,6 @@
     // Setup Error Rorting
     errorHandle::errorReporting(errorHandle::E_ALL);
 
-    // These are specific to EngineAPI and pulling the appropriate files
-    recurseInsert("includes/engine/vars.php","php");
-    recurseInsert("headerIncludes.php","php");
-
     // Setup Database Information for Vagrant
     $databaseOptions = array(
         'username' => 'username',
