@@ -153,7 +153,7 @@ In our simple MVC we are going to take advantage of a routing system natively bu
 
 The router class is built into engine, if you want to use it there is a tiny bit of setup required.  The first is to the following htaccess to your main directory.  The current setup allows us to simply have this in the src folder, but depending on your setup you may have to use the command line to place it in your root directory.
 
-_.htaccess_
+**.htaccess**
 
 ```bash
 <IfModule mod_rewrite.c>
