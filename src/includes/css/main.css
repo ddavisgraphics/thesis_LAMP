@@ -13,7 +13,7 @@
     border-color: #2c3e50;
 }
 
-.nav-pills li a:hover,.nav-pills li a:active, .nav-pills li a:visited, .nav-pills .open > a{
+.nav-pills > li > a:hover,.nav-pills > li > a:active, .nav-pills > li > a:visited{
     color: #ffffff;
     background-color: #18bc9c;
     border-color: #18bc9c;
