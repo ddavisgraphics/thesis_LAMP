@@ -242,7 +242,7 @@ Use the above example, testing the different results typed into the URL's we can
 
 **URL Tests**
 
-_**URL:** "/"_
+**URL:** _"/"_
 ```php
 array(3) {
   ["URI"]=>
@@ -262,6 +262,29 @@ array(3) {
 }
 ```
 
+**URL:** _"/home"_
+```php
+array(3) {
+  ["URI"]=>
+  string(5) "/home"
+  ["count"]=>
+  int(1)
+  ["items"]=>
+  array(1) {
+    [0]=>
+    array(2) {
+      ["path"]=>
+      string(4) "home"
+      ["variable"]=>
+      bool(false)
+    }
+  }
+}
+array(1) {
+  ["model"]=>
+  string(4) "home"
+}
+```
 
 
 
