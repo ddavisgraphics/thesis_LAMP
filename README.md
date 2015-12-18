@@ -361,9 +361,11 @@ array(3) {
 }
 ```
 
+The router doesn't prevent us from being able to use directories and custom setups outside of the MVC patterns.  You could very easily add a file that doesn't relate to the other style by developing as a folder and giving it an index.php.
 
+Example would be is if I wanted to create a page about monkeys.  I could create a new folder in my source called monkey and inside that folder have an index.php.  This will get ignored by the router callback and wait for custom php or html to be rendered.
 
-
+This is also consequently how we use our resources.  If we want to attach some CSS or JS. we need to place a blank index.php file inside of that folder.  This issue has been noted as an inconvenience and has been added to a debug list, but the features still work perfectly.  Just remember this while working.
 
 # Engine Useful Tools
 
