@@ -141,6 +141,8 @@ In our application we have to setup engine to run on our pages and applications.
     templates::load('timeTemplate');
 ```
 
+The 2 aspects of the page at the bottom include setting up a template and using local variables to call information and insert php logic into HTML.  This aspect will come in handy later and will be explained in the enxt session.  The important aspect is setting up the error handeling, the engineSingleton, and the database options.
+
 ## Simple MVC Style
 
 MVC stand for Model View and Controller.  It is used to develop applications and keep a seperation of concerns and logic.  The model aspect directly deals with the data, logic, and rule of the application.  The View component can be thought of as dealing with logic and what the user sees.  The Controller takes information determines what model and view should be represented.
@@ -149,7 +151,29 @@ In our simple MVC we are going to take advantage of a routing system natively bu
 
 ### Router
 
+The router class is built into engine, if you want to use it there is a tiny bit of setup required.  The first is to the following htaccess to your main directory.  The current setup allows us to simply have this in the src folder, but depending on your setup you may have to use the command line to place it in your root directory.
 
+.htaccess file
+
+```bash
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    ## recursively search parent dir
+    # if index.php is not found then
+    # forward to the parent directory of current URI
+    RewriteCond %{DOCUMENT_ROOT}/$1$2/index.php !-f
+    RewriteRule ^(.*?)([^/]+)/[^/]+/?$ /$1$2/ [L]
+
+    # if current index.php is found in parent dir then load it
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/$1/index.php -f
+    RewriteRule ^(.*?)[^/]+/?$ /$1/index.php [L]
+</IfModule>
+```
+
+# Engine Useful Tools
 
 ## Validation
 
