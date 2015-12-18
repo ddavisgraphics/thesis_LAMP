@@ -369,7 +369,52 @@ This is also consequently how we use our resources.  If we want to attach some C
 
 # Engine Useful Tools
 
+### Local Vars
+Local variables or local vars are part of the engine system by default and can be used to transfer PHP Logic or results into HTML.  This is done by setting and getting methods that are declared with in Engine.  For each new function or class you will have to reinstantiate the class localvars.
+
+```php
+    // instantiate the local vars
+    $localvars  = localvars::getInstance();
+
+    // set
+    $localvars->set(name, variable);
+
+    // get
+    $localvars->get(name);
+```
+
+An example might be dynamically setting a date inside of a footer.  We can do this using a little bit of PHP and the localvars.  This parameter will not render an array and doesn't know how to render any data types other than strings.  But you can see how using functions and variables can get you the desired results.
+
+```php
+    $localvars  = localvars::getInstance();
+    $localvars->set('date', new Date('m-d-Y'));
+```
+
+```html
+    <div> Today is - {local var="date"} </div>
+```
+
 ### Validation
+The validation class is an extension in EngineAPI that allows you to validate different types of variables and inputs.  You can validate phone numbers, ipaddresses, urls, email addresses, integers, alpha numeric strings, no spaces or special characters, and dates.  Each one of these aspects will return a boolean of true or false based on the information and criteria provided.
+
+```php
+    // instantiate new class
+    $validate  = new validate;
+
+    // test integer returns true
+    $validate->integer(1); // returns true
+    $validate->integer("1"); // returns true
+    $validate->integer('test') // returns false
+
+    // validate url
+    $validate->url('http://www.google.com'); // returns true
+    $validate->url('google.com'); // returns false
+
+    // validate email
+    $validate->emailAddr('something@gmail.com'); // is valid even though email may not exsist
+```
+
+For more examples and ideas you can read the [validation source code](https://github.com/wvulibraries/engineAPI/blob/develop/engine/engineAPI/latest/modules/validate/validate.php) and get the results you need.
 
 ### Form Builder
 
