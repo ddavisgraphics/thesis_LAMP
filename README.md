@@ -1,4 +1,4 @@
-# Engine Framework - LAMP Stack
+# Engine Framework 4.0 - LAMP Stack
 
 This application is a demo application using the Engine framework from WVULibraries as a base.  This demo application is to teach the LAMP Stack to create web applications for a designer interested in programming aspects associated with the web.
 
@@ -88,16 +88,17 @@ sudo ln -s /etc/httpd/logs/access_log /vagrant/serverConfiguration/serverlogs/ac
 ### PHP Configuration
 In the base directory we are going to have to setup an includes folder that adds the engine framework to our document.  We want to do this in a way that we only have to include it once.  The bootstrap is setup to be configured with a specific directory setup for your codebase, but you can always ammend it once you figure out the different layers of items and want to dive in the bash.
 
-![Directory Structure](http://oi64.tinypic.com/2hoyasl.jpg "Directory Structure")
+![Directory Structure](/Documentation/DirectorySetup.jpg?raw=true "Directory Structure")
+
 
 
 # ENGINE FOR DEVELOPMENT
 Talking with the developers of Engine, the framework had a few clear goals.
-- Security and Protection from Injection and Penetration Attacks
+- Security - Specifically protection from injection and penetration attacks.
 - Modular builds for rapid development
-- Free form development allowing the developer to choose the software design patterns they use.
+- Free form development allowing the developer to choose the software design patterns they use.  While Engine itself runs using a Singleton pattern, meaning their can only be one, the apps developed using engine is open for the developer to choose.
 
-This example we are mainly going to talk about MVC, but you can do many styles and Engine will work for a variety of different web applications.
+This example we are mainly going to talk about MVC.  Many of these same features will work with other examples as well depending on how you want to work with the different features and options.
 
 ## Validation
 
