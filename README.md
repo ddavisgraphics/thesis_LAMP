@@ -286,6 +286,82 @@ array(1) {
 }
 ```
 
+**URL:** _"/test/edit"_
+```php
+array(3) {
+  ["URI"]=>
+  string(10) "/test/edit"
+  ["count"]=>
+  int(2)
+  ["items"]=>
+  array(2) {
+    [0]=>
+    array(2) {
+      ["path"]=>
+      string(4) "test"
+      ["variable"]=>
+      bool(false)
+    }
+    [1]=>
+    array(2) {
+      ["path"]=>
+      string(4) "edit"
+      ["variable"]=>
+      bool(false)
+    }
+  }
+}
+array(2) {
+  ["model"]=>
+  string(4) "test"
+  ["action"]=>
+  string(4) "edit"
+}
+```
+
+**URL:** _"/test/update/23"_
+```php
+array(3) {
+  ["URI"]=>
+  string(15) "/test/update/23"
+  ["count"]=>
+  int(3)
+  ["items"]=>
+  array(3) {
+    [0]=>
+    array(2) {
+      ["path"]=>
+      string(4) "test"
+      ["variable"]=>
+      bool(false)
+    }
+    [1]=>
+    array(2) {
+      ["path"]=>
+      string(6) "update"
+      ["variable"]=>
+      bool(false)
+    }
+    [2]=>
+    array(2) {
+      ["path"]=>
+      string(2) "23"
+      ["variable"]=>
+      bool(false)
+    }
+  }
+}
+array(3) {
+  ["model"]=>
+  string(4) "test"
+  ["action"]=>
+  string(6) "update"
+  ["item"]=>
+  string(2) "23"
+}
+```
+
+
 
 
 
