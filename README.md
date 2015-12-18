@@ -181,23 +181,24 @@ In order to use the router we must first instantiate the class.  This is done by
 $router = router::getInstance();
 ```
 
-After declaring the class we can use the class variable to set callbacks to use for certain routes.  The example below is an example of defining the home route and a callback function.
+After declaring the class, use the class variable to set callbacks to use for certain routes.  The example below is an example of defining the home route and a callback function.
 
 ```php
 // syntax
 // $router->defineRoute(url, callbackfunction)
 
 // example of syntax for home route and a function called displayHome
-$router->defineRoute("/", 'displayHome');
+$router->defineRoute("/", 'displayRoute');
 
 //after declaring the defineRoute we want to make sure the the router routes to that url
 $router->route();
 ```
 
-The above callback function will be able to take 2 parameters.  These parameters are going to be the URL and any variables declared within the URL.  We can think of our routes as really just ways to hold information and tell the system what we want to happen.
+The above callback function will be able to take 2 parameters.  These parameters are going to be the URL and any variables declared within the URL.  Think of routes as really just ways to hold information and tell the system what to do next.
+
 ```php
     // example of the callback function
-    function displayHome($url, $vars){
+    function displayRoute($url, $vars){
         // prints the url as a string
         print "<pre>";
         var_dump($url);
@@ -211,9 +212,7 @@ The above callback function will be able to take 2 parameters.  These parameters
     }
 ```
 
-Thinking about some more complex examples.  We can use different callback functions or the same callback functions to determine what we would like to do.  It depends on how you would really want to go about using the router system.  In the next example we are going to think about how we might want to display certain actions associated with each kind of page.
-
-Below is a full URL example, but by no means the limits of what you can do.  Its really just a starting point.  It uses the callbacks to point to each of the views and really control what happens next.
+Here is a more complete example, you can use different callback functions or the same callback functions to determine what you would like to do. This is by no means the limits of what you can do.  Its really just a starting point.  It uses the callbacks to point to each of the views and really control what happens next.
 
 ```php
     // Routing
@@ -225,7 +224,7 @@ Below is a full URL example, but by no means the limits of what you can do.  Its
     $router->route();
 
     // example of the callback function
-    function displayHome($url, $vars){
+    function displayRoute($url, $vars){
         // prints the url as a string
         print "<pre>";
         var_dump($url);
@@ -237,6 +236,30 @@ Below is a full URL example, but by no means the limits of what you can do.  Its
         var_dump($vars);
         print "</pre>";
     }
+```
+
+Use the above example, testing the different results typed into the URL's we can see the produced results.
+
+**URL Tests**
+
+_**URL:** "/"_
+```php
+array(3) {
+  ["URI"]=>
+  string(1) "/"
+  ["count"]=>
+  int(1)
+  ["items"]=>
+  array(1) {
+    [0]=>
+    array(2) {
+      ["path"]=>
+      string(0) ""
+      ["variable"]=>
+      bool(false)
+    }
+  }
+}
 ```
 
 
