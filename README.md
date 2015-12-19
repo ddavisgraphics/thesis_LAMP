@@ -606,7 +606,3 @@ Example of MySQL
     }
 ```
 
-### GET / POST / SESSION
-
-### Error Handler
-

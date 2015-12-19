@@ -24,7 +24,7 @@
 
                 // if return no results
                 // else return the data
-                 if ($sqlResult->error()) {
+                if ($sqlResult->error()) {
                     throw new Exception("ERROR SQL" . $sqlResult->errorMsg());
                 }
 
