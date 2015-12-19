@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <title>{local var="pageName"} | TimeTracker5000 </title>
+    <title>{local var="pageName"}</title>
 
     <!-- Meta Information -->
     <meta charset="utf-8">
@@ -11,10 +11,9 @@
     <meta name="HandheldFriendly" content="True">
 
     <!-- Author, Description, Favicon, and Keywords -->
-    <meta name="author" content="WVU Libraries | {local var="meta_authors"}">
+    <meta name="author" content="{local var="meta_authors"}">
     <meta name="description" content="{local var="meta_description"}">
     <meta name="keywords" content="{local var="meta_keywords"}">
-    <link rel="shortcut icon" href="https://wvrhc.lib.wvu.edu/favicon.ico">
 
     <!-- Project Specific Head Includes -->
     <?php recurseInsert("includes/headerIncludes.php","php") ?>
