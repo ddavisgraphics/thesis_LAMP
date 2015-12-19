@@ -532,6 +532,9 @@ For builder is a way to dynamically create input forms that link directly to a d
 - week        HTML5 week picker dependant on browser support
 - wysiwyg     Full WYSIWYG editor
 
+Below is an example of a form builder that has only 2 fields.  Each field will be build from the addField function.
+You can see examples of where to put the form options, field options, and field types using the example below.
+
 ```php
  // create customer form
     $form = formBuilder::createForm('formName');
@@ -545,12 +548,63 @@ For builder is a way to dynamically create input forms that link directly to a d
     }
 
     // form titles
-    $form->insertTitle = "Add Customer";
-    $form->editTitle   = "Edit Customer";
-    $form->updateTitle = "Edit Customer";
+    $form->insertTitle = "Insert Title";
+    $form->editTitle   = "Edit Title";
+    $form->updateTitle = "Update Title";
+
+    // form information
+    $form->addField(array(
+        'name'       => 'ID',
+        'type'       => 'hidden',
+        'value'      => $id,
+        'primary'    => TRUE,
+        'fieldClass' => 'id',
+        'showIn'     => array(formBuilder::TYPE_INSERT, formBuilder::TYPE_UPDATE),
+    ));
+
+    $form->addField(array(
+        'name'     => 'fieldName',
+        'label'    => 'Field Label',
+        'required' => TRUE
+    ));
+```
+
+Below is an example of how you call the form you created by using the formName.  The one below is a unique example that allows the form to automatically descide between an update or an insert form based on if the primary key field has an id and it matches something within the database.
+
+```html
+{form name="formName" display="form"}
+```
+
+Below is an example of what an edit table will appear.  This will allow you to edit multiple fields rather quickly.  It is not a good option for particularly large forms.
+
+```html
+{form name="formName" display="edit"}
 ```
 
 ### MySQL
+Using mysql we can insert, update, and edit databases by using some helpful code.
+
+Example of MySQL
+```php
+    $db  = db::get($localvars->get('dbConnectionName'));
+    $sql = "SELECT * FROM `someTable`";
+    $sqlResult = $db->query($sql);
+
+    if ($sqlResult->error()) {
+        throw new Exception("ERROR SQL" . $sqlResult->errorMsg());
+    }
+
+    if ($sqlResult->rowCount() < 1) {
+       return "There are no stuffs in the database.";
+    }
+    else {
+        $data = array();
+        while($row = $sqlResult->fetch()){
+            $data[] = $row;
+        }
+        return $data;
+    }
+```
 
 ### GET / POST / SESSION
 

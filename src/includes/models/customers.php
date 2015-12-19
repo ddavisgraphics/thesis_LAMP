@@ -24,6 +24,10 @@
 
                 // if return no results
                 // else return the data
+                 if ($sqlResult->error()) {
+                    throw new Exception("ERROR SQL" . $sqlResult->errorMsg());
+                }
+
                 if ($sqlResult->rowCount() < 1) {
                    return "There are no customers in the database.";
                 }
