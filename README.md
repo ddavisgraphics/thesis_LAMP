@@ -519,9 +519,9 @@ For builder is a way to dynamically create input forms that link directly to a d
  - options   Array of value->label pairs to be displayed
 - reset       Form reset button
 - search      HTML5 search field
-- select      <select> field
+- select      \<select\> field
  - options   String of options or Array of value->label pairs to be displayed
-- string      Alias for text
+- string      Alias for stext
 - submit      Form submit button
 - delete      Form submit button to delete the record
 - text        simple \<input\> field
