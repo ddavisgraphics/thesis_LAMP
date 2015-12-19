@@ -524,8 +524,8 @@ For builder is a way to dynamically create input forms that link directly to a d
 - string      Alias for 'text'
 - submit      Form submit button
 - delete      Form submit button to delete the record
-- text        simple <input> field
-- textarea    Full <textarea>
+- text        simple \<input\> field
+- textarea    Full \<textarea\>
 - tel         HTML5 tel field
 - time        HTML5 time picker dependant on browser support
 - url         HTML5 url field
