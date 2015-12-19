@@ -497,7 +497,7 @@ For builder is a way to dynamically create input forms that link directly to a d
 - boolean     Boolean (Yes/No) field
  - options
    - type    [string] Type of boolean field: check, checkbox, radio, select (default: select)
-   - labels  [array]  Labels to use for 'Yes' and 'No' (default: ['NO_LABEL','YES_LABEL'])
+   - labels  [array]  Labels to use for 'Yes' and 'No' (default: ['NO\_LABEL','YES\_LABEL'])
 - button      Standard button
 - checkbox    Checkbox group
  - options   Array of value->label pairs to be displayed
