@@ -1,7 +1,5 @@
 <?php
-    require_once "includes/engine.php";
-    require_once "includes/models/index.php";
-    require_once "includes/controller/index.php";
+   // require our functions
     require_once "includes/functions/index.php";
 
     // instantiate classes
